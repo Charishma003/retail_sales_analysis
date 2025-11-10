@@ -13,9 +13,11 @@ Checked for NULL or missing values
 Updated missing ages (age = 54)
 Deleted incomplete records
 
+```sql
 UPDATE retail_sales
 SET age = 54
 WHERE age IS NULL;
+```
 
 2️.Data Exploration
 
