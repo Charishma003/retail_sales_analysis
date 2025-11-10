@@ -23,44 +23,44 @@ WHERE age IS NULL;
 
 Counted total transactions and unique customers
 Identified all available product categories
-
+```sql
 SELECT COUNT(*) AS total_sales FROM retail_sales;
 SELECT COUNT(DISTINCT customer_id) AS total_customers FROM retail_sales;
 SELECT DISTINCT category FROM retail_sales;
-
+```
 3️.Data Analysis & Business Insights
 --> Sales made on a specific date
-
+```sql
 SELECT * FROM retail_sales
 WHERE sale_date = '2022-11-05';
-
+```
 --> Clothing sales with high quantity in Nov 2022
-
+```sql
 SELECT * FROM retail_sales
 WHERE category = 'Clothing'
   AND TO_CHAR(sale_date, 'YYYY-MM') = '2022-11'
   AND quantity >= 4;
-
+```
 --> Total Sales by Category
-
+```sql
 SELECT category, SUM(total_sale) AS total_sales, COUNT(*) AS total_orders
 FROM retail_sales
 GROUP BY category;
-
+```
 --> Average Age of Customers (Beauty Category)
-
+```sql
 SELECT ROUND(AVG(age), 2) FROM retail_sales WHERE category = 'Beauty';
-
+```
 --> Top 5 Customers by Total Sales
-
+```sql
 SELECT customer_id, SUM(total_sale) AS total_sales
 FROM retail_sales
 GROUP BY customer_id
 ORDER BY total_sales DESC
 LIMIT 5;
-
+```
 --> Orders by Time Shift(Morning ≤ 12, Afternoon 12–17, Evening > 17)
-
+```sql
 WITH hourly_sale AS (
   SELECT *,
     CASE
@@ -73,7 +73,7 @@ WITH hourly_sale AS (
 SELECT shift, COUNT(*) AS total_orders
 FROM hourly_sale
 GROUP BY shift;
-
+```
 
 ## Learnings
 
